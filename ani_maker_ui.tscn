@@ -1,0 +1,93 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7m43rnebqch2"]
+
+[ext_resource type="Script" uid="uid://buhxdlq6mwuvo" path="res://NC/AniSoft/ani_maker_ui.gd" id="1_v0h3p"]
+
+[node name="AniMakerUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v0h3p")
+
+[node name="FrameSelectSpin" type="SpinBox" parent="."]
+layout_mode = 2
+offset_left = 405.0
+offset_top = 570.0
+offset_right = 533.0
+offset_bottom = 601.0
+prefix = "Frame: "
+
+[node name="AnimationSelectOptions" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 17.0
+offset_right = 548.0
+offset_bottom = 48.0
+
+[node name="LoadAniButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 584.0
+offset_top = 16.0
+offset_right = 630.0
+offset_bottom = 47.0
+text = "Load"
+
+[node name="MainTextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 395.0
+offset_bottom = 642.0
+text = "why not just put the file in here and we can edit the stuff here?"
+wrap_mode = 1
+
+[node name="ToThisFrameButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 556.0
+offset_top = 525.0
+offset_right = 791.0
+offset_bottom = 621.0
+text = "Run Frame"
+
+[node name="SaveButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 893.0
+offset_top = 585.0
+offset_right = 1129.0
+offset_bottom = 629.0
+text = "Save File"
+
+[node name="JointButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 404.0
+offset_top = 53.0
+offset_right = 741.0
+offset_bottom = 466.0
+text = "^^ REMEMBER ^^
+
+{ \"animation_name\": 
+[<-Array of frames
+[<- Array of joints
+[<- Info array
+  \"jointname\", 
+  [[rot, 0, 0], 
+  [pos, 0, 0], 
+  [scale, 1, 1]], 
+  time,
+  \"fucnt\"
+]
+]
+] 
+}"
+
+[connection signal="changed" from="FrameSelectSpin" to="." method="_on_frame_select_spin_changed"]
+[connection signal="pressed" from="AnimationSelectOptions" to="." method="_on_animation_select_options_pressed"]
+[connection signal="pressed" from="LoadAniButton" to="." method="_on_load_ani_button_pressed"]
+[connection signal="pressed" from="ToThisFrameButton" to="." method="_on_to_this_frame_button_pressed"]
+[connection signal="pressed" from="SaveButton" to="." method="_on_save_button_pressed"]

@@ -1,0 +1,79 @@
+[gd_scene load_steps=14 format=3 uid="uid://chh1h52l03r77"]
+
+[ext_resource type="PackedScene" uid="uid://dics5fpsbkc4x" path="res://NC/AniSoft/mesh_main.tscn" id="1_mxpqs"]
+[ext_resource type="Script" uid="uid://sfsq5de0sosl" path="res://NC/AniSoft/animation_showroom.gd" id="1_q5r8e"]
+[ext_resource type="PackedScene" uid="uid://cgvuntqla2wx1" path="res://Art/Models/mesh_hazel.tscn" id="4_fs6p4"]
+[ext_resource type="PackedScene" uid="uid://c7m43rnebqch2" path="res://NC/AniSoft/ani_maker_ui.tscn" id="4_qj65h"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ko25m"]
+sky_top_color = Color(0.35756, 0.454479, 0.848187, 1)
+sky_horizon_color = Color(0.668273, 0.645858, 0.679122, 1)
+ground_bottom_color = Color(0.422727, 0.563777, 0.379875, 1)
+
+[sub_resource type="Sky" id="Sky_ovkhy"]
+sky_material = SubResource("ProceduralSkyMaterial_ko25m")
+
+[sub_resource type="Environment" id="Environment_mxpqs"]
+background_mode = 2
+sky = SubResource("Sky_ovkhy")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q5r8e"]
+size = Vector2(5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fs6p4"]
+albedo_color = Color(2.31028e-06, 0.686007, 0.920944, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a3ufo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3ea8"]
+albedo_color = Color(0.169391, 1.57869e-05, 0.684602, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbbul"]
+albedo_color = Color(0.591824, 0, 0.0283445, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aq4md"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="AnimationShowroom" type="Node3D"]
+script = ExtResource("1_q5r8e")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.439957, 1.6127, -2.09915)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mxpqs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_q5r8e")
+
+[node name="AniMakerUI" parent="." instance=ExtResource("4_qj65h")]
+
+[node name="MeshMain" parent="." instance=ExtResource("1_mxpqs")]
+
+[node name="MeshHazel" parent="MeshMain" instance=ExtResource("4_fs6p4")]
+
+[node name="DirectionCubes" type="Node3D" parent="."]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="DirectionCubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.99322)
+material_override = SubResource("StandardMaterial3D_fs6p4")
+mesh = SubResource("BoxMesh_a3ufo")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="DirectionCubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.959)
+material_override = SubResource("StandardMaterial3D_k3ea8")
+mesh = SubResource("BoxMesh_a3ufo")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="DirectionCubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83444, 0, 0.00552225)
+material_override = SubResource("StandardMaterial3D_vbbul")
+mesh = SubResource("BoxMesh_a3ufo")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="DirectionCubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.87346, 0, 0.00552225)
+material_override = SubResource("StandardMaterial3D_aq4md")
+mesh = SubResource("BoxMesh_a3ufo")
+skeleton = NodePath("../..")
